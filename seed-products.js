@@ -35,13 +35,14 @@ async function addProducts() {
 
     products.forEach((product) => {
       const productRef = doc(db, "products", product.id);
-
-      batch.set(productRef, {
-        name: product.name,
-        price: product.price,
-        category: product.category,
-        isActive: true
-      });
+batch.set(productRef, {
+  name: product.name,
+  price: product.price,
+  category: product.category,
+  image: product.image,
+  isActive: true
+});
+    
     });
 
     await batch.commit();
