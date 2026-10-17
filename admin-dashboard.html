@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXORA | Admin Dashboard</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #f5f3ff;
+      font-family: Arial, sans-serif;
+      color: #24133f;
+    }
+
+    .dashboard-header {
+      background: #5b21b6;
+      color: white;
+      padding: 22px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .dashboard-header h1 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .dashboard-container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .welcome-card,
+    .dashboard-card {
+      background: white;
+      padding: 24px;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 18px #24133f12;
+    }
+
+    .dashboard-card h2 {
+      margin-top: 0;
+    }
+
+    .dashboard-card form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dashboard-card input,
+    .dashboard-card select {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #d8ccec;
+      border-radius: 7px;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .dashboard-button {
+      background: #6d28d9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 17px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .dashboard-button:hover {
+      background: #4c1d95;
+    }
+
+    .logout-button {
+      background: white;
+      color: #5b21b6;
+    }
+
+    .dashboard-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    #dashboard-message,
+    #add-product-message,
+    #products-message {
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 600px) {
+      .dashboard-header {
+        padding: 18px;
+      }
+
+      .dashboard-container {
+        margin-top: 18px;
+        padding: 0 12px;
+      }
+
+      .welcome-card,
+      .dashboard-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="dashboard-header">
+    <h1>NEXORA Admin</h1>
+
+    <button
+      id="logout-button"
+      class="dashboard-button logout-button"
+      type="button"
+    >
+      Logout
+    </button>
+  </header>
+
+  <main class="dashboard-container">
+
+    <section class="dashboard-card">
+      <h2>Product Management</h2>
+      <p>Add, edit, or delete products in your store.</p>
+
+      <h3>Add New Product</h3>
+
+      <form id="add-product-form">
+        <label for="new-product-name">Product Name</label>
+        <input
+          id="new-product-name"
+          type="text"
+          placeholder="Enter product name"
+          required
+        >
+
+        <label for="new-product-price">Price (₹)</label>
+        <input
+          id="new-product-price"
+          type="number"
+          min="0.01"
+          step="0.01"
+          placeholder="Enter price"
+          required
+        >
+
+        <label for="new-product-category">Category</label>
+        <select id="new-product-category" required>
+          <option value="">Choose category</option>
+          <option value="men">Men</option>
+          <option value="women">Women</option>
+          <option value="kids">Kids</option>
+          <option value="electronics">Electronics</option>
+        </select>
+
+        <!-- Product image input added -->
+        <label for="new-product-image">Product Image</label>
+        <input
+          id="new-product-image"
+          type="file"
+          accept="image/*"
+          required
+        >
+
+        <button class="dashboard-button" type="submit">
+          Add Product
+        </button>
+      </form>
+
+      <p id="add-product-message" role="status"></p>
+
+      <hr>
+
+      <h3>Existing Products</h3>
+
+      <button
+        id="view-products"
+        class="dashboard-button"
+        type="button"
+      >
+        Refresh Products
+      </button>
+
+      <p id="products-message" role="status"></p>
+      <div id="products-list"></div>
+    </section>
+
+    <section class="dashboard-card">
+      <h2>Store Website</h2>
+      <p>Open your NEXORA shopping website.</p>
+      <a href="./index.html">Visit Store</a>
+    </section>
+
+  </main>
+
+  <script type="module" src="./admin-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NEXORA | Online Shopping</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <div class="announcement">
+    ✨ Welcome to NEXORA — Find Your Favourite Things!
+  </div>
+
+  <header>
+    <a href="#home" class="logo">NEXORA</a>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <button class="cart-btn" id="open-cart">
+      🛒 Cart (<span id="cart-count">0</span>)
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">DISCOVER SOMETHING NEW</p>
+        <h1>Find What You <span>Love.</span></h1>
+        <p>Fashion, accessories and technology — all in one place.</p>
+        <a href="#products" class="primary-btn">Shop Now →</a>
+      </div>
+
+      <div class="hero-art">
+        <div class="hero-circle">N</div>
+        <span>NEW COLLECTION ✦</span>
+      </div>
+    </section>
+
+    <section class="products-section" id="products">
+      <p class="eyebrow">EXPLORE OUR COLLECTION</p>
+      <h2>Our Products</h2>
+
+      <div class="toolbar">
+        <input
+          type="search"
+          id="product-search"
+          placeholder="🔍 Search products..."
+          aria-label="Search products"
+        >
+
+        <select id="sort-products" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+        </select>
+      </div>
+
+      <div class="categories">
+        <button class="active" data-category="all">All</button>
+        <button data-category="men">Men</button>
+        <button data-category="women">Women</button>
+        <button data-category="kids">Kids</button>
+        <button data-category="electronics">Electronics</button>
+      </div>
+
+      <div class="filters">
+        <label>
+          Maximum Price:
+          <strong id="price-value">₹50,000</strong>
+          <input
+            type="range"
+            id="price-range"
+            min="500"
+            max="50000"
+            step="500"
+            value="50000"
+          >
+        </label>
+
+        <label>
+          Product Size:
+          <select id="size-filter">
+            <option value="all">All Sizes</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </label>
+
+        <button id="reset-filters" class="reset-btn">
+          Reset Filters
+        </button>
+      </div>
+
+      <p id="result-count" class="result-count"></p>
+
+      <div class="product-grid" id="product-grid"></div>
+
+      <div id="empty-results" class="empty" hidden>
+        <h3>No Products Found</h3>
+        <p>Try another search or reset your filters.</p>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-symbol">✦</div>
+      <div>
+        <p class="eyebrow">THE NEXORA PROMISE</p>
+        <h2>Something for Everyone.</h2>
+        <p>
+          Discover fashion, accessories and everyday technology
+          in one convenient shopping experience.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#home" class="footer-logo">NEXORA</a>
+    <p>Find your next favourite thing.</p>
+    <small>© <span id="year"></span> NEXORA. Demo website.</small>
+  </footer>
+
+  <div class="overlay" id="overlay" hidden></div>
+
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="drawer-heading">
+      <h2>Your Cart</h2>
+      <button class="close-btn" id="close-cart">✕</button>
+    </div>
+
+    <div id="cart-items"></div>
+
+    <div class="cart-bottom">
+      <h3>Subtotal: <span id="cart-total">₹0</span></h3>
+      <button class="primary-btn full-btn" id="checkout-button">
+        Checkout →
+      </button>
+      <p class="note">Demo checkout only. No payment is collected.</p>
+    </div>
+  </aside>
+
+  <dialog id="product-dialog">
+    <button class="close-btn dialog-close" id="close-product">✕</button>
+    <div id="product-details"></div>
+  </dialog>
+
+  <dialog id="checkout-dialog">
+    <button class="close-btn dialog-close" id="close-checkout">✕</button>
+
+    <h2>Checkout</h2>
+    <p>Order Subtotal: <strong id="checkout-total">₹0</strong></p>
+
+    <form id="checkout-form">
+      <label>
+        Full Name
+        <input name="name" required placeholder="Enter your name">
+      </label>
+
+      <label>
+        Email Address
+        <input
+          name="email"
+          type="email"
+          required
+          placeholder="you@example.com"
+        >
+      </label>
+
+      <label>
+        Delivery Address
+        <textarea
+          name="address"
+          rows="3"
+          required
+          placeholder="Enter your address"
+        ></textarea>
+      </label>
+
+      <button class="primary-btn full-btn" type="submit">
+        Place Demo Order
+      </button>
+
+      <p class="note">Demo only — no real payment is processed.</p>
+    </form>
+
+    <div id="order-success" hidden></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+<script type="module" src="./firebase.js"></script>
+<script type="module" src="./product.js"></script>
+</body>
+
+
+</html>
